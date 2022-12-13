@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MyApplication4</string>
+    <array name="all_questions">
+        <item>¿Qué etiqueta se utiliza para poner títulos?;h2;*h1;h3;p</item>
+        <item>¿Qué etiqueta se utiliza para poner texto plano?;h2;body;h3;*p</item>
+    </array>
 </resources>
