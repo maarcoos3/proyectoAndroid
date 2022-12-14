@@ -1,18 +1,20 @@
 package com.example.myapplication4.screens
 
-import android.support.v4.os.IResultReceiver.Default
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Button
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
-import androidx.compose.runtime.Composable
+import androidx.compose.material.*
+import androidx.compose.runtime.*
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
+import com.example.myapplication4.R
 import com.example.myapplication4.navigation.AppScreens
 
 @Composable
@@ -24,17 +26,39 @@ fun FirstScreen(navController: NavController) {
 
 @Composable
 fun BodyContent(navController: NavController){
+    //val imagen = painterResource(R.drawable.quizz)
+
+    var imagenLoguin = painterResource(R.drawable.quizzz)
+
+    var user by remember { mutableStateOf("usuario") }
+    var pass by remember { mutableStateOf("usuario") }
+
+
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Gray),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("Pulsa el boton para empezar")
-        Button(onClick = {
-            navController.navigate(route = AppScreens.SecondScreen.route)
-        }) {
-            Text("Empieza")
+
+       Column( modifier = Modifier) {
+           Text("Usuario")
+           TextField(value = user, onValueChange = { user = it } )
+
+           Text("Contraseña")
+           TextField(value = pass, onValueChange = { pass = it} )
+       }
+        Button(
+            onClick = {
+                if(user == pass){
+                    navController.navigate(route = AppScreens.SecondScreen.route)
+                }
+            }
+        ) {
+                Text("Login")
         }
+        //Image(painter = imagenLoguin, contentDescription = "sadas")
     }
 }
 

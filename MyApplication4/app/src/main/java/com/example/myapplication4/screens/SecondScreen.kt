@@ -7,6 +7,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -34,7 +35,7 @@ fun SecondBodyContent(navController: NavController){
     ) {
         Column(
             modifier = Modifier
-                .height(750.dp)
+                .height(700.dp)
                 .fillMaxWidth()
                 .background(Color.Gray),
             verticalArrangement = Arrangement.Top,
@@ -42,28 +43,36 @@ fun SecondBodyContent(navController: NavController){
         ) {
             
             Spacer(modifier = Modifier.padding(40.dp))
-            Button(onClick = {
-                navController.navigate(route = AppScreens.Prueba1.route)
-            }, shape = RoundedCornerShape(50)) {
-                Text("Prueba 1")
-            }
+            Button(
+                colors = ButtonDefaults.buttonColors(
+                    backgroundColor = Color.DarkGray,
+                    contentColor = Color(0xFFFFE500)
+                ),
+                onClick = {
+                    navController.navigate(route = AppScreens.Prueba1.route)
+                }, shape = RoundedCornerShape(50)) {
+                    Text("Prueba 1")
+                }
         }
 
         Column(
             Modifier
                 .height(100.dp)
                 .fillMaxWidth()
-                .background(Color.Blue)
+                .background(Color.LightGray)
                 .height(70.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Button(onClick = {
-                navController.navigate(route = AppScreens.TeoriaScreen.route)
+            Button(
+                colors = ButtonDefaults.buttonColors(
+                    backgroundColor = Color.Gray,
+                    contentColor = Color(0xFFFFEE58)
+                ),onClick = {
+                    navController.navigate(route = AppScreens.TeoriaScreen.route)
             }) {
-                Text("Teoria")
-            }
-
+                    Text("Teoria")
+                }
         }
     }
 }

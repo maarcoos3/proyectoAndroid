@@ -21,6 +21,8 @@ fun Prueba1(navController: NavController) {
     }
 }
 
+
+
 @Composable
 fun Prueba1BodyContent(navController: NavController) {
 
