@@ -1,6 +1,5 @@
 package com.example.myapplication4.screens
 
-import android.icu.text.AlphabeticIndex.Bucket.LabelType
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -14,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.myapplication4.navigation.AppScreens
 
 @Composable
 fun Prueba1(navController: NavController) {
@@ -22,7 +22,15 @@ fun Prueba1(navController: NavController) {
     }
 }
 
-
+var acertasteP1 = 0;
+/*
+object listaPreguntas {
+    val lista = listOf(
+        Pregunta("¿Qué etiqueta se utiliza para los títulos?", respuesta = listOf("h", "p", "a", "br")),
+        Pregunta("¿Qué etiqueta se utiliza para los párrafos?", respuesta = listOf("h", "p", "a", "br"))
+    )
+}
+*/
 
 
 @Composable
@@ -225,43 +233,44 @@ fun Prueba1BodyContent(navController: NavController) {
         Box(modifier = Modifier
             .fillMaxWidth()
             .height(200.dp)
-            .background(Color.LightGray)) {
+            .background(Color.Gray)) {
             Column(
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                // var aciertos by remember { mutableStateOf("0") }
-                var acertaste by remember { mutableStateOf(0) }
                 var fallos by remember { mutableStateOf(0) }
 
                 Button(
                     onClick = {
                         if(pregunta1.value == "h"){
-                            acertaste += 1
+                            acertasteP1 += 1
                         }else{
                             fallos += 1
                         }
                         if(pregunta2.value == "p"){
-                            acertaste += 1
+                            acertasteP1 += 1
                         }else{
                             fallos += 1
                         }
                         if(pregunta3.value == "a"){
-                            acertaste += 1
+                            acertasteP1 += 1
                         }else{
                             fallos += 1
                         }
                         if(pregunta4.value == "br"){
-                            acertaste += 1
+                            acertasteP1 += 1
                         }else{
                             fallos += 1
                         }
                         if(pregunta5.value == "GET"){
-                            acertaste += 1
+                            acertasteP1 += 1
                         }else{
                             fallos += 1
                         }
+                        navController.navigate(route = AppScreens.Results.route)
+
                     },
                         colors = ButtonDefaults.buttonColors(
                         backgroundColor = Color.Gray,
@@ -270,8 +279,8 @@ fun Prueba1BodyContent(navController: NavController) {
                 ) {
                     Text("Corregir")
                 }
-                Text(text = "Has acertado: $acertaste preguntas")
                 Text(text = "Has fallado: $fallos preguntas")
+
 
                 Button(onClick = {
                     navController.popBackStack()

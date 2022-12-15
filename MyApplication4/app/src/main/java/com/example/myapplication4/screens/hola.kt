@@ -1,18 +1,22 @@
 package com.example.myapplication4.screens
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Popup
+import androidx.compose.ui.window.PopupProperties
 import androidx.navigation.NavController
 import com.example.myapplication4.R
 import com.example.myapplication4.navigation.AppScreens
@@ -24,41 +28,82 @@ fun FirstScreen(navController: NavController) {
     }
 }
 
+var usuario: String = ""
+var contrasenia: String = ""
+
 @Composable
 fun BodyContent(navController: NavController){
     //val imagen = painterResource(R.drawable.quizz)
 
-    var imagenLoguin = painterResource(R.drawable.quizzz)
+    var fondo = painterResource(R.drawable.fondo1)
 
-    var user by remember { mutableStateOf("usuario") }
-    var pass by remember { mutableStateOf("usuario") }
-
+    var senialar = false
+    var user by remember { mutableStateOf("") }
+    var pass by rememberSaveable { mutableStateOf("") }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Gray),
+            .background(Color.Gray)
+            .paint(
+                painter = painterResource(id = R.drawable.fondo1),
+                contentScale = ContentScale.FillBounds
+            ),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-       Column( modifier = Modifier) {
+       Column( modifier = Modifier
+           .background(Color.Gray)
+           .padding(20.dp)) {
            Text("Usuario")
-           TextField(value = user, onValueChange = { user = it } )
+           TextField(value = user, onValueChange = { user = it },  placeholder = { Text("Enter User") } )
 
            Text("Contraseña")
-           TextField(value = pass, onValueChange = { pass = it} )
+           TextField(value = pass, onValueChange = { pass = it},  placeholder = { Text("Enter Pass") })
+
+         
+
        }
-        Button(
-            onClick = {
-                if(user == pass){
-                    navController.navigate(route = AppScreens.SecondScreen.route)
+        Row() {
+            Button(
+                onClick = {
+                    if(user == usuario && pass == contrasenia){
+                        navController.navigate(route = AppScreens.SecondScreen.route)
+                    }else {
+                        senialar = true
+                    }
                 }
-            }
-        ) {
+            ) {
                 Text("Login")
+            }
+            Spacer(modifier = Modifier.padding(15.dp))
+            Button(
+                onClick = {
+                        navController.navigate(route = AppScreens.SecondScreen.route)
+                }
+            ) {
+                Text("Registrarse")
+            }
+
         }
+
+        
+        Column() {
+            if (!senialar){
+
+            }else{
+                popup()
+            }        }
         //Image(painter = imagenLoguin, contentDescription = "sadas")
     }
 }
-
+@Composable
+fun popup(){
+    Popup(
+        properties = PopupProperties(),
+        alignment = Alignment.Center
+    ){
+        Text(text = "jsandkjasd")
+    }
+}

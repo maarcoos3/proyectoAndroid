@@ -4,10 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.myapplication4.screens.FirstScreen
-import com.example.myapplication4.screens.Prueba1
-import com.example.myapplication4.screens.SecondScreen
-import com.example.myapplication4.screens.TeoriaScreen
+import com.example.myapplication4.screens.*
 
 @Composable
 fun AppNavigation(){
@@ -24,6 +21,9 @@ fun AppNavigation(){
         }
         composable(route = AppScreens.Prueba1.route){
             Prueba1(navController)
+        }
+        composable(route = AppScreens.Results.route){
+            Results(navController)
         }
     }
 

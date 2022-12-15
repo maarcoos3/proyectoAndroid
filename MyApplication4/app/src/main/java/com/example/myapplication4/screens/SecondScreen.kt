@@ -50,6 +50,7 @@ fun SecondBodyContent(navController: NavController){
                 ),
                 onClick = {
                     navController.navigate(route = AppScreens.Prueba1.route)
+                    acertasteP1 = 0
                 }, shape = RoundedCornerShape(50)) {
                     Text("Prueba 1")
                 }
