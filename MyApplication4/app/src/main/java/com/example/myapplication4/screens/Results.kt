@@ -47,10 +47,14 @@ fun ResultsBodyContent(navController: NavController) {
         ) {
             if (acertasteP1 >= 3){
                 Image(painter = painterResource(id = R.drawable.aprobado), contentDescription = null)
-                Text(text = "Tus aciertos son: $acertasteP1 , por ello has aprobado")
+                Text(text = "Has acertado: $acertasteP1/5 , por ello has aprobado")
+                Text(text = "Has fallado: $fallosP1/5 preguntas")
+
             }else{
                 Image(painter = painterResource(id = R.drawable.suspensobueno), contentDescription = null)
-                Text(text = "Tus aciertos son: $acertasteP1 , por ello has suspendido")
+                Text(text = "Has acertado: $acertasteP1/5 , por ello has suspendido")
+                Text(text = "Has fallado: $fallosP1 preguntas")
+
             }
         }
         Column(

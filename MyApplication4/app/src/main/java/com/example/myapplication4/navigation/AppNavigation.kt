@@ -22,6 +22,9 @@ fun AppNavigation(){
         composable(route = AppScreens.Prueba1.route){
             Prueba1(navController)
         }
+        composable(route = AppScreens.Prueba2.route){
+            Prueba2(navController)
+        }
         composable(route = AppScreens.Results.route){
             Results(navController)
         }

@@ -9,7 +9,12 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.geometry.center
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RadialGradientShader
+import androidx.compose.ui.graphics.Shader
+import androidx.compose.ui.graphics.ShaderBrush
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -23,15 +28,19 @@ fun Prueba1(navController: NavController) {
 }
 
 var acertasteP1 = 0;
-/*
-object listaPreguntas {
-    val lista = listOf(
-        Pregunta("¿Qué etiqueta se utiliza para los títulos?", respuesta = listOf("h", "p", "a", "br")),
-        Pregunta("¿Qué etiqueta se utiliza para los párrafos?", respuesta = listOf("h", "p", "a", "br"))
-    )
-}
-*/
+var fallosP1 = 0
 
+val largeRadialGradient = object : ShaderBrush() {
+    override fun createShader(size: Size): Shader {
+        val biggerDimension = maxOf(size.height, size.width)
+        return RadialGradientShader(
+            colors = listOf(Color(0xFF2be4dc), Color(0xFF243484)),
+            center = size.center,
+            radius = biggerDimension / 2f,
+            colorStops = listOf(0f, 0.95f)
+        )
+    }
+}
 
 @Composable
 fun Prueba1BodyContent(navController: NavController) {
@@ -67,12 +76,12 @@ fun Prueba1BodyContent(navController: NavController) {
         modifier = Modifier
             .verticalScroll(rememberScrollState())
             .fillMaxWidth()
+            .background(largeRadialGradient)
     ) {
 
         Box(modifier = Modifier
             .fillMaxWidth()
             .height(290.dp)
-            .background(Color.LightGray),
         ) {
             Column(
                 Modifier.padding(40.dp)
@@ -104,7 +113,6 @@ fun Prueba1BodyContent(navController: NavController) {
         Box(modifier = Modifier
             .fillMaxWidth()
             .height(290.dp)
-            .background(Color.Gray),
         ) {
             Column(
                 Modifier.padding(40.dp)
@@ -136,7 +144,6 @@ fun Prueba1BodyContent(navController: NavController) {
         Box(modifier = Modifier
             .fillMaxWidth()
             .height(290.dp)
-            .background(Color.LightGray),
         ) {
             Column(
                 Modifier.padding(40.dp)
@@ -168,7 +175,6 @@ fun Prueba1BodyContent(navController: NavController) {
         Box(modifier = Modifier
             .fillMaxWidth()
             .height(290.dp)
-            .background(Color.Gray),
         ) {
             Column(
                 Modifier.padding(40.dp)
@@ -201,7 +207,6 @@ fun Prueba1BodyContent(navController: NavController) {
         Box(modifier = Modifier
             .fillMaxWidth()
             .height(290.dp)
-            .background(Color.LightGray),
         ) {
             Column(
                 Modifier.padding(40.dp)
@@ -233,41 +238,39 @@ fun Prueba1BodyContent(navController: NavController) {
         Box(modifier = Modifier
             .fillMaxWidth()
             .height(200.dp)
-            .background(Color.Gray)) {
+            .background(Color.LightGray)) {
             Column(
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-               // var aciertos by remember { mutableStateOf("0") }
-                var fallos by remember { mutableStateOf(0) }
 
                 Button(
                     onClick = {
                         if(pregunta1.value == "h"){
                             acertasteP1 += 1
                         }else{
-                            fallos += 1
+                            fallosP1 += 1
                         }
                         if(pregunta2.value == "p"){
                             acertasteP1 += 1
                         }else{
-                            fallos += 1
+                            fallosP1 += 1
                         }
                         if(pregunta3.value == "a"){
                             acertasteP1 += 1
                         }else{
-                            fallos += 1
+                            fallosP1 += 1
                         }
                         if(pregunta4.value == "br"){
                             acertasteP1 += 1
                         }else{
-                            fallos += 1
+                            fallosP1 += 1
                         }
                         if(pregunta5.value == "GET"){
                             acertasteP1 += 1
                         }else{
-                            fallos += 1
+                            fallosP1 += 1
                         }
                         navController.navigate(route = AppScreens.Results.route)
 
@@ -279,8 +282,6 @@ fun Prueba1BodyContent(navController: NavController) {
                 ) {
                     Text("Corregir")
                 }
-                Text(text = "Has fallado: $fallos preguntas")
-
 
                 Button(onClick = {
                     navController.popBackStack()

@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
@@ -32,14 +33,14 @@ fun TeoriaBodyContent(navController: NavController){
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFF8D25E))
+            .background(Color(0xFF5EF8E1))
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
 
 
         ) {
         Box(modifier = Modifier
-                /*.background(color = Color.LightGray)*/
+            /*.background(color = Color.LightGray)*/
             .padding(horizontal = 7.dp, vertical = 2.dp)
             .fillMaxWidth()
         ) {
@@ -50,7 +51,6 @@ fun TeoriaBodyContent(navController: NavController){
                 .fillMaxWidth()
                 .padding(horizontal = 50.dp, vertical = 20.dp)
             ,
-            //verticalArrangement = Arrangement.Bottom,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
@@ -59,14 +59,29 @@ fun TeoriaBodyContent(navController: NavController){
                 verticalArrangement = Arrangement.Top,
             ) {
                 Row(modifier = Modifier
-                    .background(color = Color.LightGray)
                     .fillMaxWidth(),
                     verticalAlignment = Alignment.Top,
                     horizontalArrangement = Arrangement.Center
                 ) {
-                    Text(text = "<a>", fontStyle = FontStyle.Italic)
-                    Spacer(modifier = Modifier.padding(20.dp))
-                    Text(text = "Define un hipervínculo", textAlign = TextAlign.Center)
+                    Column(
+                        modifier = Modifier
+                            .height(50.dp)
+                            .width(50.dp)
+                            .background(Color.Blue, CircleShape)
+                            .border(2.dp, Color.Blue, CircleShape),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Text(text = "<a>", fontStyle = FontStyle.Italic)
+                    }
+                    Spacer(modifier = Modifier.padding(10.dp))
+                    Column(
+                        modifier = Modifier.height(50.dp).background(Color.Blue).fillMaxWidth(),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Text(text = "Define un hipervínculo", textAlign = TextAlign.Center)
+                    }
                 }
                 Spacer(modifier = Modifier.padding(7.dp))
                 Row(modifier = Modifier
