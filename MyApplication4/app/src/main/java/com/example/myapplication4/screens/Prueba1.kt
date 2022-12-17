@@ -82,11 +82,15 @@ fun Prueba1BodyContent(navController: NavController) {
         Box(modifier = Modifier
             .fillMaxWidth()
             .height(290.dp)
+            .background(Color.LightGray),
         ) {
             Column(
-                Modifier.padding(40.dp)
+                Modifier
+                    .padding(20.dp)
+                    .background(Color(0xFF93D5CB))
             ) {
-                Text(text = "¿Qué etiqueta se utiliza para los títulos?: ${pregunta1.value.ifEmpty { "NONE" }}")
+                Text(text = "¿Qué etiqueta se utiliza para los títulos?: ${pregunta1.value.ifEmpty { " " }}")
+                Spacer(modifier = Modifier.padding(10.dp))
                 pregunta1items.forEach { item ->
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -97,6 +101,7 @@ fun Prueba1BodyContent(navController: NavController) {
                                 role = Role.RadioButton
                             )
                             .padding(8.dp)
+
                     ) {
                         RadioButton(
                             selected = pregunta1isSelectedItem(item),
@@ -115,9 +120,13 @@ fun Prueba1BodyContent(navController: NavController) {
             .height(290.dp)
         ) {
             Column(
-                Modifier.padding(40.dp)
+                Modifier
+                    .padding(40.dp)
+                    .background(Color(0xFF93D5CB))
+
             ) {
-                Text(text = "¿Qué etiqueta se utiliza para los párrafos?: ${pregunta2.value.ifEmpty { "NONE" }}")
+                Text(text = "¿Qué etiqueta se utiliza para los párrafos?: ${pregunta2.value.ifEmpty { " " }}")
+                Spacer(modifier = Modifier.padding(10.dp))
                 pregunta2items.forEach { item ->
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -146,9 +155,12 @@ fun Prueba1BodyContent(navController: NavController) {
             .height(290.dp)
         ) {
             Column(
-                Modifier.padding(40.dp)
+                Modifier
+                    .padding(40.dp)
+                    .background(Color(0xFF93D5CB))
             ) {
-                Text(text = "¿Qué etiqueta se utiliza para los enlaces?: ${pregunta3.value.ifEmpty { "NONE" }}")
+                Text(text = "¿Qué etiqueta se utiliza para los enlaces?: ${pregunta3.value.ifEmpty { " " }}")
+                Spacer(modifier = Modifier.padding(10.dp))
                 pregunta3items.forEach { item ->
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -179,7 +191,11 @@ fun Prueba1BodyContent(navController: NavController) {
             Column(
                 Modifier.padding(40.dp)
             ) {
-                Text(text = "¿Qué etiqueta se utiliza para los espaciados?: ${pregunta4.value.ifEmpty { "NONE" }}")
+                Text(text = "¿Qué etiqueta se utiliza para los espaciados?: ${pregunta4.value.ifEmpty { " " }}")
+                Spacer(modifier = Modifier
+                    .padding(10.dp)
+                    .background(Color(0xFF93D5CB))
+                )
                 pregunta4items.forEach { item ->
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -209,9 +225,14 @@ fun Prueba1BodyContent(navController: NavController) {
             .height(290.dp)
         ) {
             Column(
-                Modifier.padding(40.dp)
+                Modifier.padding(20.dp)
             ) {
-                Text(text = "¿Con qué método se pasan los datos por la url?: ${pregunta5.value.ifEmpty { "NONE" }}")
+                Text(text = "¿Con qué método se pasan los datos por la url?: ${pregunta5.value.ifEmpty { " " }}")
+                Spacer(
+                    modifier = Modifier
+                        .padding(10.dp)
+                        .background(Color(0xFF93D5CB))
+                )
                 pregunta5items.forEach { item ->
                     Row(
                         verticalAlignment = Alignment.CenterVertically,

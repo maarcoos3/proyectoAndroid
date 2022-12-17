@@ -30,14 +30,12 @@ fun FirstScreen(navController: NavController) {
 
 var usuario: String = ""
 var contrasenia: String = ""
+var senialar = false
+
 
 @Composable
 fun BodyContent(navController: NavController){
-    //val imagen = painterResource(R.drawable.quizz)
 
-    var fondo = painterResource(R.drawable.fondo1)
-
-    var senialar = false
     var user by remember { mutableStateOf("") }
     var pass by rememberSaveable { mutableStateOf("") }
 
@@ -52,19 +50,37 @@ fun BodyContent(navController: NavController){
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Row(
+            modifier = Modifier
+                .background(Color.Gray)
+                .padding(16.dp)
+        ) {
+            Text(
+                text = "DUOPROGRAMACION"
+            )
+        }
+        Spacer(modifier = Modifier.padding(20.dp))
+        Column( modifier = Modifier
+            .background(Color.Gray)
+            .padding(20.dp)) {
+            Text("Usuario")
+            TextField(value = user, onValueChange = { user = it },  placeholder = { Text("Enter User") } )
 
-       Column( modifier = Modifier
-           .background(Color.Gray)
-           .padding(20.dp)) {
-           Text("Usuario")
-           TextField(value = user, onValueChange = { user = it },  placeholder = { Text("Enter User") } )
+            Text("Contraseña")
+            TextField(value = pass, onValueChange = { pass = it},  placeholder = { Text("Enter Pass") })
+        }
+        Column(
+            modifier = Modifier.size(50.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            if (senialar){
+                popup()
 
-           Text("Contraseña")
-           TextField(value = pass, onValueChange = { pass = it},  placeholder = { Text("Enter Pass") })
+            }else{
 
-         
-
-       }
+            }
+        }
         Row() {
             Button(
                 onClick = {
@@ -85,25 +101,19 @@ fun BodyContent(navController: NavController){
             ) {
                 Text("Registrarse")
             }
-
         }
-
-        
-        Column() {
-            if (!senialar){
-
-            }else{
-                popup()
-            }        }
-        //Image(painter = imagenLoguin, contentDescription = "sadas")
     }
 }
 @Composable
 fun popup(){
-    Popup(
-        properties = PopupProperties(),
-        alignment = Alignment.Center
-    ){
-        Text(text = "jsandkjasd")
+    Column() {
+        Popup(
+            properties = PopupProperties(),
+            alignment = Alignment.Center,
+        ){
+            Text(text = "Usuario y contraseña incorrectos", modifier = Modifier
+                .background(Color.White)
+                .padding(16.dp))
+        }
     }
 }
