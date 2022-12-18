@@ -28,8 +28,8 @@ fun FirstScreen(navController: NavController) {
     }
 }
 
-var usuario: String = ""
-var contrasenia: String = ""
+var usuario: String = "a"
+var contrasenia: String = "p"
 var senialar = false
 
 
@@ -50,6 +50,17 @@ fun BodyContent(navController: NavController){
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Column(
+            modifier = Modifier.size(50.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            if (registrado){
+                popupR()
+            }else{
+                registrado = false
+            }
+        }
         Row(
             modifier = Modifier
                 .background(Color.Gray)
@@ -78,15 +89,17 @@ fun BodyContent(navController: NavController){
                 popup()
 
             }else{
-
+                senialar = false
             }
         }
         Row() {
             Button(
                 onClick = {
+                    senialar = false
+                    registrado = false
                     if(user == usuario && pass == contrasenia){
                         navController.navigate(route = AppScreens.SecondScreen.route)
-                    }else {
+                    }else if (user !== usuario && pass !== contrasenia){
                         senialar = true
                     }
                 }
@@ -96,7 +109,9 @@ fun BodyContent(navController: NavController){
             Spacer(modifier = Modifier.padding(15.dp))
             Button(
                 onClick = {
-                        navController.navigate(route = AppScreens.SecondScreen.route)
+                    senialar = false
+                    registrado = false
+                    navController.navigate(route = AppScreens.Registration.route)
                 }
             ) {
                 Text("Registrarse")
@@ -113,7 +128,24 @@ fun popup(){
         ){
             Text(text = "Usuario y contraseña incorrectos", modifier = Modifier
                 .background(Color.White)
-                .padding(16.dp))
+                .padding(16.dp),
+                color = Color.Gray
+            )
+        }
+    }
+}
+@Composable
+fun popupR(){
+    Column() {
+        Popup(
+            properties = PopupProperties(),
+            alignment = Alignment.Center,
+        ){
+            Text(text = "Usuario registrado", modifier = Modifier
+                .background(Color.White)
+                .padding(16.dp),
+                color = Color.Gray
+            )
         }
     }
 }

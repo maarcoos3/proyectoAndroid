@@ -45,16 +45,29 @@ fun ResultsBodyContent(navController: NavController) {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            if (acertasteP1 >= 3){
-                Image(painter = painterResource(id = R.drawable.aprobado), contentDescription = null)
-                Text(text = "Has acertado: $acertasteP1/5 , por ello has aprobado")
-                Text(text = "Has fallado: $fallosP1/5 preguntas")
+            if (corregirP1){
+                if (acertasteP1 >= 3){
+                    Image(painter = painterResource(id = R.drawable.aprobado), contentDescription = null)
+                    Text(text = "Has acertado: $acertasteP1/5 , por ello has aprobado")
+                    Text(text = "Has fallado: $fallosP1/5 preguntas")
 
-            }else{
-                Image(painter = painterResource(id = R.drawable.suspensobueno), contentDescription = null)
-                Text(text = "Has acertado: $acertasteP1/5 , por ello has suspendido")
-                Text(text = "Has fallado: $fallosP1 preguntas")
+                }else{
+                    Image(painter = painterResource(id = R.drawable.suspensobueno), contentDescription = null)
+                    Text(text = "Has acertado: $acertasteP1/5 , por ello has suspendido")
+                    Text(text = "Has fallado: $fallosP1 preguntas")
+                }
+            }
+           else if (corregirP2){
+                if (acertasteP2 >= 3){
+                    Image(painter = painterResource(id = R.drawable.aprobado), contentDescription = null)
+                    Text(text = "Has acertado: $acertasteP2/5 , por ello has aprobado")
+                    Text(text = "Has fallado: $fallosP2/5 preguntas")
 
+                }else{
+                    Image(painter = painterResource(id = R.drawable.suspensobueno), contentDescription = null)
+                    Text(text = "Has acertado: $acertasteP2/5 , por ello has suspendido")
+                    Text(text = "Has fallado: $fallosP2 preguntas")
+                }
             }
         }
         Column(
@@ -70,6 +83,8 @@ fun ResultsBodyContent(navController: NavController) {
                     backgroundColor = Color.Gray,
                     contentColor = Color(0xFFFFEE58)
                 ),onClick = {
+                    corregirP1 = false
+                    corregirP2 = false
                     navController.navigate(route = AppScreens.SecondScreen.route)
                 }) {
                 Text("Pruebas")

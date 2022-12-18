@@ -29,7 +29,7 @@ fun Prueba1(navController: NavController) {
 
 var acertasteP1 = 0;
 var fallosP1 = 0
-
+var corregirP1 = false
 val largeRadialGradient = object : ShaderBrush() {
     override fun createShader(size: Size): Shader {
         val biggerDimension = maxOf(size.height, size.width)
@@ -69,7 +69,7 @@ fun Prueba1BodyContent(navController: NavController) {
     val pregunta2items = listOf("h", "p", "a", "br")
     val pregunta3items = listOf("h", "p", "a", "br")
     val pregunta4items = listOf("h", "p", "a", "br")
-    val pregunta5items = listOf("POST", "HTTPREQUEST", "GET", "XMLREQUEST")
+    val pregunta5items = listOf("POST", "form", "GET", "XMLREQUEST")
 
 
     Column(
@@ -81,13 +81,11 @@ fun Prueba1BodyContent(navController: NavController) {
 
         Box(modifier = Modifier
             .fillMaxWidth()
-            .height(290.dp)
-            .background(Color.LightGray),
+            .size(300.dp)
         ) {
             Column(
                 Modifier
-                    .padding(20.dp)
-                    .background(Color(0xFF93D5CB))
+                    .padding(40.dp)
             ) {
                 Text(text = "¿Qué etiqueta se utiliza para los títulos?: ${pregunta1.value.ifEmpty { " " }}")
                 Spacer(modifier = Modifier.padding(10.dp))
@@ -101,7 +99,6 @@ fun Prueba1BodyContent(navController: NavController) {
                                 role = Role.RadioButton
                             )
                             .padding(8.dp)
-
                     ) {
                         RadioButton(
                             selected = pregunta1isSelectedItem(item),
@@ -117,13 +114,11 @@ fun Prueba1BodyContent(navController: NavController) {
         }
         Box(modifier = Modifier
             .fillMaxWidth()
-            .height(290.dp)
+            .size(300.dp)
         ) {
             Column(
                 Modifier
                     .padding(40.dp)
-                    .background(Color(0xFF93D5CB))
-
             ) {
                 Text(text = "¿Qué etiqueta se utiliza para los párrafos?: ${pregunta2.value.ifEmpty { " " }}")
                 Spacer(modifier = Modifier.padding(10.dp))
@@ -152,12 +147,11 @@ fun Prueba1BodyContent(navController: NavController) {
         }
         Box(modifier = Modifier
             .fillMaxWidth()
-            .height(290.dp)
+            .size(300.dp)
         ) {
             Column(
                 Modifier
                     .padding(40.dp)
-                    .background(Color(0xFF93D5CB))
             ) {
                 Text(text = "¿Qué etiqueta se utiliza para los enlaces?: ${pregunta3.value.ifEmpty { " " }}")
                 Spacer(modifier = Modifier.padding(10.dp))
@@ -186,7 +180,7 @@ fun Prueba1BodyContent(navController: NavController) {
         }
         Box(modifier = Modifier
             .fillMaxWidth()
-            .height(290.dp)
+            .size(300.dp)
         ) {
             Column(
                 Modifier.padding(40.dp)
@@ -194,7 +188,6 @@ fun Prueba1BodyContent(navController: NavController) {
                 Text(text = "¿Qué etiqueta se utiliza para los espaciados?: ${pregunta4.value.ifEmpty { " " }}")
                 Spacer(modifier = Modifier
                     .padding(10.dp)
-                    .background(Color(0xFF93D5CB))
                 )
                 pregunta4items.forEach { item ->
                     Row(
@@ -222,16 +215,15 @@ fun Prueba1BodyContent(navController: NavController) {
 
         Box(modifier = Modifier
             .fillMaxWidth()
-            .height(290.dp)
+            .size(300.dp)
         ) {
             Column(
                 Modifier.padding(20.dp)
             ) {
-                Text(text = "¿Con qué método se pasan los datos por la url?: ${pregunta5.value.ifEmpty { " " }}")
+                Text(text = "¿Qué etiqueta se utiliza para los formularios?: ${pregunta5.value.ifEmpty { " " }}")
                 Spacer(
                     modifier = Modifier
                         .padding(10.dp)
-                        .background(Color(0xFF93D5CB))
                 )
                 pregunta5items.forEach { item ->
                     Row(
@@ -256,6 +248,7 @@ fun Prueba1BodyContent(navController: NavController) {
                 }
             }
         }
+
         Box(modifier = Modifier
             .fillMaxWidth()
             .height(200.dp)
@@ -288,15 +281,16 @@ fun Prueba1BodyContent(navController: NavController) {
                         }else{
                             fallosP1 += 1
                         }
-                        if(pregunta5.value == "GET"){
+                        if(pregunta5.value == "form"){
                             acertasteP1 += 1
                         }else{
                             fallosP1 += 1
                         }
+                        corregirP1 = true
                         navController.navigate(route = AppScreens.Results.route)
 
                     },
-                        colors = ButtonDefaults.buttonColors(
+                    colors = ButtonDefaults.buttonColors(
                         backgroundColor = Color.Gray,
                         contentColor = Color(0xFFFFEE58)
                     )
@@ -304,6 +298,8 @@ fun Prueba1BodyContent(navController: NavController) {
                     Text("Corregir")
                 }
 
+                Spacer(modifier = Modifier.padding(15.dp))
+                
                 Button(onClick = {
                     navController.popBackStack()
                 },
@@ -313,7 +309,6 @@ fun Prueba1BodyContent(navController: NavController) {
                     )) {
                     Text("Tests")
                 }
-
             }
         }
     }

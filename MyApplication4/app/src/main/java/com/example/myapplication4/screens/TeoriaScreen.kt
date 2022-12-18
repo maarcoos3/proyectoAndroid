@@ -67,20 +67,24 @@ fun TeoriaBodyContent(navController: NavController){
                         modifier = Modifier
                             .height(50.dp)
                             .width(50.dp)
-                            .background(Color.Blue, CircleShape)
+                            .background(Color.Cyan, CircleShape)
                             .border(2.dp, Color.Blue, CircleShape),
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Text(text = "<a>", fontStyle = FontStyle.Italic)
+                        Text(text = "<a>", fontStyle = FontStyle.Italic, color = Color.Blue)
                     }
-                    Spacer(modifier = Modifier.padding(10.dp))
+                    Spacer(modifier = Modifier.padding(5.dp))
                     Column(
-                        modifier = Modifier.height(50.dp).background(Color.Blue).fillMaxWidth(),
+                        modifier = Modifier
+                            .height(50.dp)
+                            .background(Color.Cyan)
+                            .fillMaxWidth()
+                            .border(2.dp, Color.Blue, CircleShape),
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Text(text = "Define un hipervínculo", textAlign = TextAlign.Center)
+                        Text(text = "Define un hipervínculo", textAlign = TextAlign.Center, color = Color.Blue)
                     }
                 }
                 Spacer(modifier = Modifier.padding(7.dp))

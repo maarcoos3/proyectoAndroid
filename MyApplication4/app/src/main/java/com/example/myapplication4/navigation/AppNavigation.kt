@@ -28,6 +28,9 @@ fun AppNavigation(){
         composable(route = AppScreens.Results.route){
             Results(navController)
         }
+        composable(route = AppScreens.Registration.route){
+            Registration(navController)
+        }
     }
 
 }

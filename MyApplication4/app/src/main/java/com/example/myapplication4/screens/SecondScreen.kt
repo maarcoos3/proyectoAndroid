@@ -59,7 +59,7 @@ fun SecondBodyContent(navController: NavController){
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                Text(text = "Prueba 1", color = Color.Cyan )
+                Text(text = "P1 </>", color = Color.Cyan )
             }
             Spacer(modifier = Modifier.padding(40.dp))
             Column( modifier = Modifier
@@ -73,7 +73,8 @@ fun SecondBodyContent(navController: NavController){
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                Text(text = "Prueba 2", color = Color.Cyan )
+                acertasteP2 = 0
+                Text(text = "P2 </>", color = Color.Cyan )
             }
         }
 
