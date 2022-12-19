@@ -260,7 +260,6 @@ fun Prueba2BodyContent(navController: NavController) {
                 ) {
                     Text("Corregir")
                 }
-                Text(text = "Has fallado: $fallos preguntas")
 
 
                 Button(onClick = {
