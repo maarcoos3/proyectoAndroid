@@ -39,7 +39,7 @@ fun SecondBodyContent(navController: NavController){
     ) {
         Column(
             modifier = Modifier
-                .size(720.dp)
+                .size(620.dp)
                 .fillMaxWidth()
                 .background(fondo),
             verticalArrangement = Arrangement.Top,
@@ -84,7 +84,6 @@ fun SecondBodyContent(navController: NavController){
                 .fillMaxWidth()
                 .background(Color.LightGray)
                 .height(70.dp)
-                .border(2.dp, Color.Blue)
             ,
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
